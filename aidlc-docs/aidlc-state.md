@@ -29,10 +29,10 @@
 - [x] Workflow Planning — COMPLETE
 - [x] Application Design — COMPLETE (lightweight; package/service/controller structure already defined per-task in the implementation plan)
 - [x] Units Generation — COMPLETE
-- [ ] **Consolidated Inception Approval** — PENDING USER APPROVAL
+- [x] **Consolidated Inception Approval** — APPROVED (user committed/pushed Inception artifacts, then requested "Procede con la siguiente fase")
 
 ### 🟢 CONSTRUCTION PHASE
-- [ ] Unit 1: Keycloak Configuration (Project Scaffolding + Standalone Keycloak Console Setup) — NOT STARTED
+- [ ] Unit 1: Keycloak Configuration (Project Scaffolding + Standalone Keycloak Console Setup) — Code Generation Planning COMPLETE, awaiting approval to generate
 - [ ] Unit 2: Custom Login Theme — NOT STARTED
 - [ ] Unit 3: Spring Boot Backend (Native-Ready) — NOT STARTED
 - [ ] Unit 4: Testing & Integration — NOT STARTED
@@ -42,7 +42,7 @@
 - [ ] Operations — PLACEHOLDER
 
 ## Current Status
-- **Lifecycle Phase**: INCEPTION
-- **Current Stage**: Consolidated Inception summary presented, awaiting single approval to enter CONSTRUCTION
-- **Next Stage**: Unit 1 Code Generation (Planning) — Project Scaffolding & Keycloak Standalone Configuration
+- **Lifecycle Phase**: CONSTRUCTION
+- **Current Stage**: Unit 1 — Code Generation, Part 1 (Planning) complete
+- **Next Stage**: Awaiting user approval of `aidlc-docs/construction/plans/unit-1-keycloak-configuration-code-generation-plan.md` to begin Part 2 (Generation)
 - **Status**: Awaiting user approval
