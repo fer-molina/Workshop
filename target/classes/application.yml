@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: passkey-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Real Keycloak instance issuer URI (e.g. https://keycloak.lifemiles.com/realms/lifemiles).
+          # MUST be https:// in real environments (SECURITY-01). No default value is provided:
+          # the application fails to start if this is not set, rather than falling back to an
+          # insecure or incorrect issuer (fail closed, SECURITY-15).
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+
+# LifeMiles-specific configuration, bound by LifeMilesKeycloakProperties.
+# All values are sourced exclusively from environment variables - no default credentials
+# are configured anywhere in this file (SECURITY-09, SECURITY-12).
+lifemiles:
+  keycloak:
+    admin-url: ${KEYCLOAK_ADMIN_URL}
+    admin-user: ${KEYCLOAK_ADMIN_USER}
+    admin-password: ${KEYCLOAK_ADMIN_PASSWORD}
+    client-id: ${KEYCLOAK_CLIENT_ID}
+
+logging:
+  pattern:
+    # Structured-friendly pattern; centralized log shipping/format is finalized in Unit 3 (SECURITY-03).
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
