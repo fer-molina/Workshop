@@ -139,14 +139,24 @@ Feature: Autenticación sin contraseña con Passkey
     And el sistema muestra un mensaje "No se encontró una Passkey en este dispositivo"
     And ofrece opciones alternativas de inicio de sesión
 
-  Scenario: Autenticación con Passkey sin ingresar usuario ni contraseña (Discoverable Credentials)
+  Scenario: Autenticación con Passkey requiere ingresar username antes de la verificación
     Given el usuario accede a la página de inicio de sesión de LifeMiles
-    And el dispositivo tiene una Passkey discoverable registrada
+    And el dispositivo tiene una Passkey registrada
     When selecciona la opción "Iniciar sesión con Passkey"
-    And el sistema solicita verificación sin pedir identificador de usuario
+    Then el sistema solicita al usuario ingresar su email o username
+    When el usuario ingresa su email registrado
+    And el sistema envía el challenge con las credenciales permitidas para ese usuario
+    And el dispositivo solicita verificación local (biometría, PIN o llave de seguridad)
     And el usuario completa la verificación local
-    Then el sistema identifica al usuario a partir de la credencial almacenada
-    And el usuario es autenticado exitosamente sin haber ingresado email ni contraseña
+    Then el sistema valida la firma criptográfica contra la llave pública del usuario en Keycloak
+    And el usuario es autenticado exitosamente
+
+  Scenario: El usuario ingresa un username sin Passkey registrada
+    Given el usuario accede a la página de inicio de sesión de LifeMiles
+    When selecciona la opción "Iniciar sesión con Passkey"
+    And ingresa un email que no tiene Passkey asociada
+    Then el sistema muestra un mensaje "No se encontró una Passkey asociada a esta cuenta"
+    And ofrece opciones alternativas de inicio de sesión (usuario/contraseña o redes sociales)
 
   Scenario: Timeout durante la autenticación con Passkey
     Given el usuario accede a la página de inicio de sesión de LifeMiles
@@ -287,13 +297,6 @@ Feature: Gestión de Passkeys del usuario
     And la Passkey eliminada no puede usarse para futuros inicios de sesión
     And el usuario recibe confirmación de la eliminación
 
-  Scenario: El usuario no puede eliminar su última Passkey si es su único método de autenticación
-    Given el usuario solo tiene Passkey como método de autenticación (sin contraseña activa)
-    And tiene una única Passkey registrada
-    When intenta eliminar esa Passkey
-    Then el sistema impide la eliminación
-    And muestra un mensaje "No puede eliminar su único método de autenticación. Registre otra Passkey o configure una contraseña primero"
-
   Scenario: El usuario renombra una Passkey para identificarla fácilmente
     Given el usuario tiene múltiples Passkeys registradas
     When accede a la gestión de Passkeys
@@ -396,7 +399,7 @@ Feature: Requerimientos no funcionales de Passkey
 | 3 | Flujo de registro/enrolamiento de Passkey | Registro de Passkey |
 | 4 | Soporte de múltiples Passkeys por usuario | Registro de Passkey |
 | 5 | Autenticación passwordless con Passkey | Autenticación sin contraseña |
-| 6 | Discoverable credentials (sin ingresar usuario) | Autenticación sin contraseña |
+| 6 | Username requerido antes de verificación Passkey | Autenticación sin contraseña |
 | 7 | Convivencia sin afectar métodos existentes | Convivencia con métodos existentes |
 | 8 | Token de sesión unificado | Convivencia con métodos existentes |
 | 9 | Resistencia a phishing (validación de origin) | Seguridad reforzada |
