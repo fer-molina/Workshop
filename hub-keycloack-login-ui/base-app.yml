@@ -1,0 +1,21 @@
+PROJECTNAME-prd:
+  namespace: "argo-prd"
+  additionalLabels:
+    service: "PROJECTNAME-prd"
+  project: "GROUPNAME"
+  source:
+    helm:
+      parameters:
+        - name: appNamespace
+          value: prd
+        - name: argoSecretClusterName
+          value: FOLDER
+      valueFiles:
+        - "clusters/FOLDER/prd/values.yaml"
+    path: "."
+    repoURL: "https://gitlab.com/lifemiles-it/GROUPNAME-configurations/PROJECTNAME.git"
+    targetRevision: "main"
+  destination:
+    namespace: "prd"
+    server: "KSERVER"
+  syncPolicy: {}

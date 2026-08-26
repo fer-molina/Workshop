@@ -1,0 +1,55 @@
+body {
+  background: #fafafa !important;
+  background-image: none !important;
+  width: 100vw;
+  height: 100vh;
+}
+
+#kc-locale {
+  display: none !important;
+}
+
+#kc-form-wrapper {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #fafafa !important;
+}
+
+#kc-container {
+  background-image: none !important;
+  background-color: #fafafa !important;
+}
+
+#kc-container-wrapper {
+  background-color: #fafafa !important;
+  background-image: none !important;
+}
+
+#kc-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: none !important;
+  background: #fafafa !important;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login-pf body {
+  background: #fafafa !important;
+  background-image: none !important;
+}
+
+.loader-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa !important;
+  width: 100vw;
+  height: 100vh;
+}
+
+.card-pf {
+  background-color: #fafafa !important;
+}

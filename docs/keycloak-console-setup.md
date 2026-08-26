@@ -6,7 +6,7 @@ y cómo habilitar el autenticador **WebAuthn Passwordless** manualmente a travé
 
 > **Nota importante**: Esta guía es exclusivamente para el Keycloak **real** (dev/staging).
 > Los tests de integración automatizados usan un realm de fixture separado
-> (`src/test/resources/keycloak-test-realm.json`) levantado vía Testcontainers, que no
+> (`src/test/resources/lifemiles-test-realm.json`) levantado vía Testcontainers, que no
 > depende de esta guía ni la reemplaza. Ver la nota al final de este documento.
 
 ## 1. Instalación standalone de Keycloak
@@ -111,7 +111,72 @@ mvn spring-boot:run
 
 Esta guía **no aplica** a los tests de integración automatizados. Esos tests levantan un
 contenedor Keycloak efímero (vía Testcontainers) que importa el realm de fixture
-`src/test/resources/keycloak-test-realm.json`, el cual ya trae el WebAuthn Passwordless
+`src/test/resources/lifemiles-test-realm.json`, el cual ya trae el WebAuthn Passwordless
 Authenticator preconfigurado como ALTERNATIVE. Ese fixture es independiente de esta guía:
 no representa la configuración del Keycloak real, y no debe usarse como referencia para
 configurar los ambientes reales de dev/staging. Ver `src/test/resources/README-fixture-realm.md`.
+
+> El nombre del archivo importa: Keycloak deriva el nombre del realm del nombre del archivo
+> siguiendo la convención `<nombreRealm>-realm.json`. No renombrar sin cambiar también el
+> valor `realm` dentro del JSON.
+
+---
+
+## 7. Instalar el tema de login LifeMiles (Unit 2)
+
+El tema de login vive en `authTheme/` y es un **cascarón FreeMarker** que carga la SPA
+`hub-keycloack-login-ui` desde CloudFront. Instalarlo:
+
+1. Copiar el directorio del tema a la instalación de Keycloak:
+   ```
+   cp -r authTheme /opt/keycloak/themes/lifemiles
+   ```
+   (o empaquetarlo como provider JAR con su `META-INF/keycloak-themes.json`).
+2. Copiar también el tema de Account Console:
+   ```
+   cp -r themes/lifemiles-account /opt/keycloak/themes/lifemiles-account
+   ```
+3. Reiniciar Keycloak (`bin/kc.sh build` + `start --optimized` en staging).
+4. En la consola: **Realm settings → Themes**
+   - **Login theme**: `lifemiles`
+   - **Account theme**: `lifemiles-account`
+5. Guardar.
+
+> **Dependencia externa**: la plantilla `login-template.ftl` usa la variable `cms_env` para
+> elegir el bucket de CloudFront. Esa variable **no es estándar de Keycloak**: la inyecta un
+> provider propio de LifeMiles que no forma parte de este repositorio. Si el tema se instala
+> sin ese provider, las pantallas fallarán al renderizar. Confirmar con el equipo de
+> plataforma que el provider está desplegado antes de activar el tema.
+
+## 8. Configurar las cabeceras de seguridad (SECURITY-04)
+
+Las cabeceras de seguridad **no las puede definir un tema**: son cabeceras de respuesta HTTP
+que Keycloak emite a partir de la configuración del realm. Un `<meta>` no puede establecer
+HSTS.
+
+Ir a **Realm settings → Security defenses** y configurar:
+
+| Campo | Valor |
+|---|---|
+| `X-Frame-Options` | `DENY` |
+| `Content-Security-Policy` | ver más abajo |
+| `Content-Security-Policy-Report-Only` | *(vacío)* |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Strict-Transport-Security` | `max-age=31536000; includeSubDomains` |
+| `X-Robots-Tag` | `none` |
+
+**Content-Security-Policy** (debe coincidir con `docs/security-exceptions.md`, EX-001):
+
+```
+default-src 'self'; script-src 'self' 'unsafe-inline' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; style-src 'self' 'unsafe-inline' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; img-src 'self' data: https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; font-src 'self' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; connect-src 'self' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; frame-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+```
+
+> **Esta política incluye `'unsafe-inline'` y es una desviación aprobada de SECURITY-04**, no
+> un descuido. El motivo es que las plantillas existentes de LifeMiles usan `<script>` inline
+> y los assets se sirven desde CloudFront. El riesgo residual y la vía de remediación
+> (CSP con nonces) están documentados en `docs/security-exceptions.md`.
+>
+> En producción, añadir además a `connect-src` e `img-src` los orígenes reales del CMS y de
+> analítica (ButterCMS/Strapi, GTM, Adobe, Sift) que use el ambiente; el fixture de test solo
+> incluye los de CloudFront.

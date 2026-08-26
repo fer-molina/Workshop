@@ -1,0 +1,22 @@
+=== environment ===
+NODE=v20.15.0
+YARN=1.22.22
+
+=== sync source to WSL-native filesystem ===
+
+=== yarn install ===
+yarn install v1.22.22
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+error Error: https://gitlab.com/api/v4/projects/59819396/packages/npm/@lm-tecnologias-interactivas-c/website-components/-/@lm-tecnologias-interactivas-c/website-components-1.4.85.tgz: Request failed "401 Unauthorized"
+    at ResponseError.ExtendableBuiltin (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:696:66)
+    at new ResponseError (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:802:124)
+    at Request.<anonymous> (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:66750:16)
+    at Request.emit (node:events:519:28)
+    at module.exports.Request.onRequestResponse (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:142287:10)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient [as onIncoming] (node:_http_client:698:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+    at TLSSocket.socketOnData (node:_http_client:540:22)
+    at TLSSocket.emit (node:events:519:28)
+info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.

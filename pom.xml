@@ -21,7 +21,23 @@
     <properties>
         <java.version>21</java.version>
         <!-- Test dependency versions pinned per SECURITY-10 (exact versions, no ranges) -->
-        <testcontainers-keycloak.version>3.6.0</testcontainers-keycloak.version>
+        <!--
+            testcontainers-keycloak 4.3.1 declares testcontainers 2.0.5, which is exactly the
+            version managed by the Spring Boot 4.0.8 BOM. Version 3.6.0 declared 1.20.4 and
+            was silently upgraded to 2.0.5 by the BOM, producing an unsupported mix.
+        -->
+        <testcontainers-keycloak.version>4.3.1</testcontainers-keycloak.version>
+        <!--
+            commons-io must be forced to a version that provides
+            org.apache.commons.io.file.attribute.FileTimes (added in 2.12.0).
+            keycloak-admin-client -> resteasy-multipart-provider pulls commons-io 2.11.0 at
+            compile scope, which wins dependency resolution and breaks commons-compress 1.28.0
+            (used by Testcontainers' MountableFile). Symptom: NoClassDefFoundError for FileTimes
+            thrown on a background thread while copying files into the container, which silently
+            skips the realm import instead of failing the test.
+            2.20.0 is the version commons-compress 1.28.0 itself declares.
+        -->
+        <commons-io.version>2.20.0</commons-io.version>
         <!--
             jqwik version pinned to 1.9.3 intentionally (NOT the latest 1.10.x line).
             SECURITY NOTICE: jqwik 1.10.0+ ships an intentional prompt-injection payload
@@ -34,10 +50,22 @@
         -->
         <jqwik.version>1.9.3</jqwik.version>
         <cucumber.version>7.20.1</cucumber.version>
-        <playwright.version>1.49.0</playwright.version>
+        <!-- playwright.version removed in Unit 4: Cypress was chosen for E2E instead. -->
+        <graalvm.version>25.0.2-graal</graalvm.version>
         <keycloak-admin-client.version>26.0.12</keycloak-admin-client.version>
         <cyclonedx-maven-plugin.version>2.9.1</cyclonedx-maven-plugin.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- See the commons-io.version property for why this override is required. -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- Core -->
@@ -80,12 +108,14 @@
             <artifactId>spring-boot-testcontainers</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>1.21.4</version>
-            <scope>test</scope>
-        </dependency>
+        <!--
+            NOTE: org.testcontainers:junit-jupiter is intentionally NOT declared.
+            That module only exists up to the Testcontainers 1.x line (last release 1.21.4)
+            and has no 2.x counterpart. Spring Boot 4.0.8 manages Testcontainers at 2.0.5,
+            so declaring it would mix core 2.0.5 with a 1.21.4 module. The integration tests
+            manage the container lifecycle explicitly in @BeforeAll/@AfterAll and therefore
+            do not need the @Testcontainers/@Container JUnit extension.
+        -->
         <dependency>
             <groupId>com.github.dasniko</groupId>
             <artifactId>testcontainers-keycloak</artifactId>
@@ -121,13 +151,16 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- E2E: Playwright (declared now, used starting Unit 4) -->
-        <dependency>
-            <groupId>com.microsoft.playwright</groupId>
-            <artifactId>playwright</artifactId>
-            <version>${playwright.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--
+            E2E: Playwright was declared in Unit 1 "for Unit 4" and has been REMOVED.
+
+            Unit 4 question 1 selected Cypress instead, so this dependency would never have been
+            used. An unused test dependency is still supply-chain surface that has to be tracked and
+            patched (SECURITY-10), so it is deleted rather than left declared.
+
+            The Cypress E2E suite lives in hub-keycloack-login-ui, which is where the Node toolchain
+            already is. See docs/build-and-test.md.
+        -->
     </dependencies>
 
     <build>
@@ -135,6 +168,32 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!--
+                Property-based tests are GENERATED but NOT EXECUTED.
+
+                The PBT Partial extension (PBT-02, PBT-03, PBT-07, PBT-08, PBT-09) remains enabled,
+                so the artifacts under src/test/java/com/lifemiles/passkey/property are required.
+                Execution is disabled by explicit user instruction of 2026-08-26 ("De ahora en
+                adelante no ejecutes las property test").
+
+                The exclusion lives here, in the build, rather than as a one-off decision to skip
+                running them: that way the instruction still holds for anyone who builds this
+                project later, and the reason is discoverable at the point of enforcement.
+
+                Failsafe needs no equivalent exclusion: its <includes> is already restricted to
+                **/*IT.java, so *Properties.java classes are never picked up there.
+
+                To re-enable, delete the <excludes> block in this plugin.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/property/*.java</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <!-- SBOM generation (SECURITY-10) -->
             <plugin>
@@ -167,6 +226,36 @@
                                 <goals>
                                     <goal>process-aot</goal>
                                 </goals>
+                                <configuration>
+                                    <!--
+                                        AOT processing starts the application context at BUILD time
+                                        to generate native metadata. Our configuration is
+                                        deliberately fail-closed: every Keycloak property is required
+                                        with no default, so the context cannot start without values
+                                        and `process-aot` fails with
+                                        "Could not resolve placeholder 'KEYCLOAK_ISSUER_URI'".
+
+                                        These placeholders exist solely to let the build-time context
+                                        start. They are NOT runtime defaults: nothing here reaches
+                                        the produced binary, which still requires real environment
+                                        variables and still refuses to start without them. Adding
+                                        defaults to application.yml instead would have been the wrong
+                                        fix — it would silently make the service startable with a
+                                        bogus issuer.
+
+                                        Discovered in Unit 4, the first time the native build was
+                                        attempted.
+                                    -->
+                                    <jvmArguments>
+                                        -DKEYCLOAK_ISSUER_URI=http://aot-build-placeholder/realms/aot
+                                        -DKEYCLOAK_ADMIN_URL=http://aot-build-placeholder
+                                        -DKEYCLOAK_ADMIN_USER=aot-build-placeholder
+                                        -DKEYCLOAK_ADMIN_PASSWORD=aot-build-placeholder
+                                        -DKEYCLOAK_CLIENT_ID=aot-build-placeholder
+                                        -DKEYCLOAK_REALM=aot-build-placeholder
+                                        -DLIFEMILES_CORS_ALLOWED_ORIGINS=https://aot-build-placeholder
+                                    </jvmArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -206,6 +295,11 @@
                             </execution>
                         </executions>
                         <configuration>
+                            <!--
+                                Restricted to *IT.java. This also means the jqwik property tests
+                                (*Properties.java) are never run here, consistent with the Surefire
+                                exclusion documented above.
+                            -->
                             <includes>
                                 <include>**/*IT.java</include>
                             </includes>

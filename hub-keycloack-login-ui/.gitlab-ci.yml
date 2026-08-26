@@ -1,0 +1,46 @@
+## Variables are all avialable variables to use in a pipeline
+## Variables should be named using Upper Case Snake Case
+## Uppercase letters, and spaces should be replaced with underscores (eg: VAR_NAME)
+variables:
+  ## FOR React:
+  BUILD_IMAGE: node:20-alpine
+
+  ## PROJECT_VERSION is used to version the service application
+  PROJECT_VERSION: 1.0.0
+
+  ##Buckets for deploy:
+  ##BUCKET NON PRD:
+  BUCKET_NONPRD: s3://lifemileswebsite-s3bucket-nonprod-upgi
+  ##BUCKET PRD:
+  BUCKET_PRD: s3://lifemileswebsite-s3bucket-41
+
+  # CUCUMBER_VERSION: 11.0.1
+  CUCUMBER_VERSION:
+    11.0.1
+
+    ## FUNCTIONAL_TEST is true when the project have a functional test
+  ## If not, you set this variable false or omit it
+  FUNCTIONAL_TEST: "true"
+
+  ## If you wat only deploy to argocd.ops-lifemiles.net (Clusters dev-lifemiles.net, qa-lifemiles.net, etc)
+  # DEPLOY: argocd
+  DEPLOY: argocd
+
+## This section is for include the files needed to run the pipeline
+include:
+  ## This include is to run the normal flow for microservice
+  - project: "lifemiles-it/lm-pipeline-templates/base-microsites-pl"
+    ref: main
+    file: "/flows/normal.yml"
+
+  ## This include is to specify the language
+  - project: "lifemiles-it/lm-pipeline-templates/base-microsites-pl"
+    ref: main
+    file: "/languages/react-microsite-base.yml"
+
+  ## This "file" depend depends directly on the GitLab project/group where the pipeline will be executed
+  ## For example, if the group is "lm-integrator" the line would be:
+  # file: '/groups/lm-integrator.yml'
+  - project: "lifemiles-it/lm-pipeline-templates/pipeline-templates"
+    ref: main
+    file: "/groups/lm-tecnologias-interactivas.yml"

@@ -1,0 +1,24 @@
+Updating the configuration and installing your custom providers, if any. Please wait.
+2026-08-26 16:06:32,277 WARN  [io.qua.config] (build-33) Unrecognized configuration key "quarkus.smallrye-health.extensions.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+2026-08-26 16:06:33,860 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-33) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+2026-08-26 16:06:33,864 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-33) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+2026-08-26 16:06:41,406 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 11411ms
+Running the server in development mode. DO NOT use this configuration in production.
+2026-08-26 16:06:47,677 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+2026-08-26 16:06:47,956 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+2026-08-26 16:06:48,383 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+2026-08-26 16:06:49,560 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+2026-08-26 16:06:51,081 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+2026-08-26 16:06:56,881 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_880529, Site name: null
+2026-08-26 16:06:57,910 INFO  [org.keycloak.exportimport.dir.DirImportProvider] (main) Importing from directory /opt/keycloak/bin/../data/import
+2026-08-26 16:06:57,922 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+2026-08-26 16:07:01,387 INFO  [org.keycloak.exportimport.singlefile.SingleFileImportProvider] (main) Full importing from file /opt/keycloak/bin/../data/import/realm.json
+2026-08-26 16:07:04,135 INFO  [org.keycloak.exportimport.util.ImportUtils] (main) Realm 'lifemiles-test' imported
+2026-08-26 16:07:04,136 INFO  [org.keycloak.services] (main) KC-SERVICES0030: Full model import requested. Strategy: IGNORE_EXISTING
+2026-08-26 16:07:04,136 INFO  [org.keycloak.services] (main) KC-SERVICES0032: Import finished successfully
+2026-08-26 16:07:04,434 INFO  [org.keycloak.services] (main) KC-SERVICES0077: Created temporary admin user with username admin
+2026-08-26 16:07:04,812 INFO  [io.quarkus] (main) Keycloak 26.1.5 on JVM (powered by Quarkus 3.15.4) started in 23.173s. Listening on: http://0.0.0.0:8080
+2026-08-26 16:07:04,813 INFO  [io.quarkus] (main) Profile dev activated. 
+2026-08-26 16:07:04,813 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, narayana-jta, opentelemetry, reactive-routes, rest, rest-jackson, smallrye-context-propagation, vertx]
+2026-08-26 16:08:26,584 INFO  [com.arjuna.ats.jbossatx] (main) ARJUNA032014: Stopping transaction recovery manager
+2026-08-26 16:08:26,844 INFO  [io.quarkus] (main) Keycloak stopped in 0.301s

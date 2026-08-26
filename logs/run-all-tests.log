@@ -1,0 +1,122 @@
+############################################################
+# ENVIRONMENT
+############################################################
+NODE=v20.15.0
+YARN=1.22.22
+JAVA=java version "25.0.4" 2026-07-21 LTS
+MAVEN=[1mApache Maven 3.8.7[m
+DOCKER=Docker version 29.7.2, build a7dcaa6
+
+############################################################
+# PART 1 — Java / Keycloak suite
+############################################################
+MAVEN_RC=130
+
+############################################################
+# PART 2a — SPA faithful install (lockfile enforced)
+############################################################
+repo .npmrc present? no
+yarn install v1.22.22
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+error Error: https://gitlab.com/api/v4/projects/59819396/packages/npm/@lm-tecnologias-interactivas-c/website-components/-/@lm-tecnologias-interactivas-c/website-components-1.4.85.tgz: Request failed "404 Not Found"
+    at ResponseError.ExtendableBuiltin (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:696:66)
+    at new ResponseError (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:802:124)
+    at Request.<anonymous> (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:66750:16)
+    at Request.emit (node:events:519:28)
+    at module.exports.Request.onRequestResponse (/home/fjmolina/.nvm/versions/node/v20.15.0/lib/node_modules/yarn/lib/cli.js:142287:10)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:698:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:119:17)
+    at TLSSocket.socketOnData (node:_http_client:540:22)
+    at TLSSocket.emit (node:events:519:28)
+info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this command.
+FAITHFUL_INSTALL_RC=1
+
+############################################################
+# PART 2b — FALLBACK: full SPA suite with private packages STUBBED
+# The faithful install failed above. This run is NOT equivalent.
+############################################################
+warning " > @csstools/postcss-global-data@3.1.0" has unmet peer dependency "postcss@^8.4".
+warning "commitlint > @commitlint/cli > @commitlint/load > cosmiconfig-typescript-loader@6.3.0" has unmet peer dependency "@types/node@*".
+warning " > postcss-custom-media@11.0.6" has unmet peer dependency "postcss@^8.4".
+warning " > stylelint-config-prettier@9.0.5" has incorrect peer dependency "stylelint@>= 11.x < 15".
+[4/4] Building fresh packages...
+success Saved lockfile.
+$ husky
+.git can't be foundDone in 13.79s.
+STUB_INSTALL_RC=0
+ FAIL  src/test/components/IntelsatLoginForm.form.test.tsx > IntelsatLoginForm form behaviors > validates username (LM number, alphanumeric, email) and enables submit when password valid
+ FAIL  src/test/components/IntelsatLoginForm.form.test.tsx > IntelsatLoginForm form behaviors > prefills username from ftnum cookie and treats it as valid
+ FAIL  src/test/components/IntelsatLoginForm.form.test.tsx > IntelsatLoginForm form behaviors > shows Loader and submits form when window.retrieveLoginInfo is called
+ FAIL  src/test/components/IntelsatLoginForm.form.test.tsx > IntelsatLoginForm form behaviors > redirects to enrollment URL and preserves params from loginUri
+Error: [vitest] No "getFlag" export is defined on the "@lm-tecnologias-interactivas-u/website-utils" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi[33m.[39m[34mmock[39m([35mimport[39m([32m"@lm-tecnologias-interactivas-u/website-utils"[39m)[33m,[39m [35masync[39m (importOriginal) [33m=>[39m {
+  [35mconst[39m actual [33m=[39m [35mawait[39m [34mimportOriginal[39m()
+  [35mreturn[39m {
+    [33m...[39mactual[33m,[39m
+    [90m// your mocked methods[39m
+  }
+})
+
+ ❯ src/components/Templates/IntelsatLoginForm/index.tsx:120:26
+    118|       //validate flag as "skip-social-{client_id}"
+    119|       const prefixSocial = "skip-social-"
+    120|       const skipSocial = getFlag({
+       |                          ^
+    121|         id: "social-manager-view",
+    122|         micrositeName: microsite,
+ ❯ commitHookEffectListMount node_modules/react-dom/cjs/react-dom.development.js:23189:26
+ ❯ commitPassiveMountOnFiber node_modules/react-dom/cjs/react-dom.development.js:24970:11
+ ❯ commitPassiveMountEffects_complete node_modules/react-dom/cjs/react-dom.development.js:24930:9
+ ❯ commitPassiveMountEffects_begin node_modules/react-dom/cjs/react-dom.development.js:24917:7
+ ❯ commitPassiveMountEffects node_modules/react-dom/cjs/react-dom.development.js:24905:3
+ ❯ flushPassiveEffectsImpl node_modules/react-dom/cjs/react-dom.development.js:27078:3
+ ❯ flushPassiveEffects node_modules/react-dom/cjs/react-dom.development.js:27023:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/20]⎯
+
+ FAIL  src/test/components/LifemilesLoginForm.form.test.tsx > LifemilesLoginForm form behaviors > validates username for LM number, alphanumeric username, and email; and password enabling submit
+ FAIL  src/test/components/LifemilesLoginForm.form.test.tsx > LifemilesLoginForm form behaviors > prefills username from ftnum cookie and marks it valid
+ FAIL  src/test/components/LifemilesLoginForm.form.test.tsx > LifemilesLoginForm form behaviors > redirects to enrollment URL when clicking Register here for free
+ FAIL  src/test/components/LifemilesLoginForm.social.test.tsx > LifemilesLoginForm social provider redirect > sets window.location.href to provider url on click
+Error: [vitest] No "IconResolver" export is defined on the "@lm-tecnologias-interactivas-c/website-components" mock. Did you forget to return it from "vi.mock"?
+If you need to partially mock a module, you can use "importOriginal" helper inside:
+
+vi[33m.[39m[34mmock[39m([35mimport[39m([32m"@lm-tecnologias-interactivas-c/website-components"[39m)[33m,[39m [35masync[39m (importOriginal) [33m=>[39m {
+  [35mconst[39m actual [33m=[39m [35mawait[39m [34mimportOriginal[39m()
+  [35mreturn[39m {
+    [33m...[39mactual[33m,[39m
+    [90m// your mocked methods[39m
+  }
+})
+
+ ❯ render src/components/Templates/LifemilesLoginForm/index.tsx:379:18
+    377|             >
+    378|               <button data-cy={"app-back-btn"} data-testid={"app-back-…
+    379|                 <IconResolver url={dataForm?.back_icon ?? ""} iconColo…
+       |                  ^
+    380|                 <span className={styles.backLm_label}>{dataForm?.retur…
+    381|               </button>
+ ❯ LifemilesLoginForm src/components/Templates/LifemilesLoginForm/index.tsx:505:10
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/20]⎯
+
+
+ Test Files  12 failed | 12 passed (24)
+      Tests  17 failed | 65 passed (82)
+   Start at  12:59:35
+   Duration  6.10s (transform 2.55s, setup 11.89s, collect 5.84s, tests 2.87s, environment 36.05s, prepare 4.62s)
+
+SPA_RC=1
+SPA_MODE=stubbed
+
+ALL_TESTS_DONE

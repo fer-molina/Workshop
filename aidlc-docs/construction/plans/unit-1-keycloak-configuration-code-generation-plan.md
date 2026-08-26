@@ -58,9 +58,10 @@
   - Path: `docs/keycloak-console-setup.md`
 
 - [x] **Step 7: Testcontainers fixture realm (test-only)**
-  - Create `src/test/resources/keycloak-test-realm.json`: realm `lifemiles-test` with WebAuthn Passwordless authenticator pre-registered as ALTERNATIVE in browser flow, RP name "LifeMiles", RP ID `localhost` (test-appropriate), user verification required, resident key required, plus one test client and one test user
+  - Create `src/test/resources/lifemiles-test-realm.json`: realm `lifemiles-test` with WebAuthn Passwordless authenticator pre-registered as ALTERNATIVE in browser flow, RP name "LifeMiles", RP ID `localhost` (test-appropriate), user verification required, resident key required, plus one test client and one test user
   - Explicitly documented via a header comment (as a JSON-adjacent `.md` note, since JSON doesn't support comments) that this fixture is test-only and independent of the real instance's manual setup
-  - Path: `src/test/resources/keycloak-test-realm.json`, `src/test/resources/README-fixture-realm.md`
+  - Path: `src/test/resources/lifemiles-test-realm.json`, `src/test/resources/README-fixture-realm.md`
+  - **File name corrected during test execution (2026-08-26)**: originally generated as `keycloak-test-realm.json`. Keycloak's `DirImportProvider` derives the realm name from the file name via the `<realmName>-realm.json` convention, so the original name made Keycloak bind the session to a non-existent realm `keycloak-test` and abort container startup with `Session not bound to a realm`. The file name must match the `realm` value declared inside it. Fixture *content* is unchanged from the approved design.
 
 - [x] **Step 8: Testcontainers smoke test**
   - `KeycloakFixtureRealmIT` — starts a Keycloak Testcontainer (dasniko/testcontainers-keycloak) importing `keycloak-test-realm.json`, asserts realm is reachable and the WebAuthn Passwordless authenticator is present in the browser flow via Admin REST API query
@@ -85,9 +86,20 @@
 
 ## Test Requirements (from implementation plan, Task 1)
 
-- Testcontainers starts Keycloak with `keycloak-test-realm.json`; verify WebAuthn authenticator is active (Step 8)
-- Application context loads in AOT mode (Step 9)
-- Native image build is deferred to manual verification (`mvn -Pnative native:compile`) — documented in summary, not run automatically in this stage since it requires GraalVM installed locally (flagged as a build/test-time verification, not blocking Unit 1 code generation)
+- [x] Testcontainers starts Keycloak with `lifemiles-test-realm.json`; verify WebAuthn authenticator is active (Step 8) — **EXECUTED AND PASSING** (3/3 tests, `logs/mvn-verify-final.log`)
+- [x] Application context loads in AOT mode (Step 9) — **EXECUTED AND PASSING** (1/1 test)
+- [ ] Native image build is deferred to manual verification (`mvn -Pnative native:compile`) — still **NOT EXECUTED**; requires a GraalVM installation, which is not present in the WSL environment (only OpenJDK Corretto/Ubuntu 21). Flagged as a build/test-time verification for the developer or CI, not blocking Unit 1.
+
+## Verification Record (2026-08-26, WSL Ubuntu 24.04)
+
+Environment: OpenJDK 21.0.12, Maven 3.8.7, Docker 29.4.3, Keycloak image `quay.io/keycloak/keycloak:26.1`.
+
+Result: `mvn clean verify -Pintegration` → **BUILD SUCCESS**. Surefire 1/1, Failsafe 3/3.
+
+Three defects were found and fixed during this first execution — see `aidlc-docs/audit.md`
+and the unit summary for full detail: a blocking `commons-io` version conflict that silently
+prevented the realm file from being copied into the container, a Testcontainers version
+misalignment, and the fixture file-name convention issue noted in Step 7.
 
 ## Security Compliance Targets (SECURITY Baseline — blocking)
 

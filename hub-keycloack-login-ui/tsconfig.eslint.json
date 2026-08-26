@@ -1,0 +1,8 @@
+{
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2020
+  },
+  "extends": "./tsconfig.json",
+  "include": ["./src/", "vite.config.ts", "postcss.config.js"]
+}

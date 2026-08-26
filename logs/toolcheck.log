@@ -1,0 +1,7 @@
+NVM=none
+NVM_DIR=[]
+FNM=none
+COREPACK=/mnt/c/Users/fjmolina/Programs/Nodejs/corepack
+NODE=/usr/bin/node
+NODEV=v18.19.1
+NVMSH=absent

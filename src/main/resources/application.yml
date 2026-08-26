@@ -17,11 +17,36 @@ spring:
 lifemiles:
   keycloak:
     admin-url: ${KEYCLOAK_ADMIN_URL}
+    # SECURITY-06 exception EX-002: this is a full admin account, not a least-privilege service
+    # account. See docs/security-exceptions.md.
     admin-user: ${KEYCLOAK_ADMIN_USER}
     admin-password: ${KEYCLOAK_ADMIN_PASSWORD}
     client-id: ${KEYCLOAK_CLIENT_ID}
+    # Realm whose users own the Passkeys (e.g. lifemiles). Required, no default: deriving it from
+    # the issuer URI would work most of the time and fail confusingly when it did not.
+    realm: ${KEYCLOAK_REALM}
+    # Realm the admin account itself lives in. Defaults to master, which is the standard install.
+    auth-realm: ${KEYCLOAK_AUTH_REALM:master}
+    # Explicit timeouts. Without them a stalled Keycloak holds servlet threads until the pool is
+    # exhausted, turning a dependency slowdown into an outage of this service (NFR-1, NFR-3).
+    connect-timeout-ms: ${KEYCLOAK_CONNECT_TIMEOUT_MS:3000}
+    read-timeout-ms: ${KEYCLOAK_READ_TIMEOUT_MS:5000}
+    # Exact browser origins allowed to call this API (SECURITY-08). Required and non-empty, with no
+    # default and no wildcards, since the API is credentialed.
+    cors-allowed-origins: ${LIFEMILES_CORS_ALLOWED_ORIGINS}
+
+# NOTE: Spring Boot Actuator is intentionally NOT a dependency, so no health/metrics endpoint
+# exists. If deployment needs liveness probes, add the starter and expose ONLY `health` with
+# show-details: never — exposing /actuator/** would disclose env, beans and mappings (SECURITY-09).
 
 logging:
-  pattern:
-    # Structured-friendly pattern; centralized log shipping/format is finalized in Unit 3 (SECURITY-03).
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  structured:
+    format:
+      # Spring Boot's built-in structured logging (SECURITY-03). Chosen over
+      # logstash-logback-encoder specifically to avoid adding a dependency for something the
+      # framework already provides (SECURITY-10).
+      console: ecs
+  level:
+    # Audit events are emitted under this dedicated logger so they can be routed and retained
+    # separately from application logs (NFR-5).
+    PASSKEY_AUDIT: INFO

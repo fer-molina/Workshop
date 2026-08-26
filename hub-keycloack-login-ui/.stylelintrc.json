@@ -1,0 +1,26 @@
+{
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["apply", "variants", "responsive", "screen"]
+      }
+    ],
+    "declaration-block-no-duplicate-properties": true,
+    "font-family-no-duplicate-names": true,
+    "keyframe-block-no-duplicate-selectors": true,
+    "no-duplicate-at-import-rules": true,
+    "color-no-invalid-hex": true,
+    "media-query-no-invalid": true,
+    "function-no-unknown": true,
+    "media-feature-name-no-unknown": true,
+    "property-no-unknown": true,
+    "selector-pseudo-class-no-unknown": null,
+    "selector-pseudo-element-no-unknown": true,
+    "selector-type-no-unknown": true,
+    "unit-allowed-list": ["px", "em", "deg", "s", "vh", "vw", "%", "rem", "ms"],
+    "number-max-precision": 3,
+    "declaration-block-no-redundant-longhand-properties": true,
+    "shorthand-property-no-redundant-values": true
+  }
+}

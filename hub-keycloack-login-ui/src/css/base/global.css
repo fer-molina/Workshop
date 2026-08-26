@@ -1,0 +1,155 @@
+html {
+  body {
+    background-color: #fafafa;
+  }
+
+  &.hasTabbed button:focus {
+    outline: auto 5px #81bcfa;
+  }
+}
+
+html.noScrollable,
+body.noScrollable {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.side-padding {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+
+  @media screen and (--breakpoint-sm-to-md) {
+    padding-left: 46px !important;
+    padding-right: 46px !important;
+  }
+
+  @media screen and (--breakpoint-md-to-lg) {
+    padding-left: 68px !important;
+    padding-right: 68px !important;
+  }
+
+  @media screen and (--breakpoint-lg-to-xxl) {
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+  }
+
+  @media screen and (--breakpoint-xxl-greater) {
+    padding-right: calc(50vw - 750px) !important;
+    padding-left: calc(50vw - 750px) !important;
+  }
+}
+
+.loading-bg {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: auto;
+  margin-top: 40px;
+}
+
+.loading-bg.white {
+  background: white;
+  margin-left: -100px;
+}
+
+.loading-bg.black {
+  background: black;
+  margin-top: -100px;
+}
+
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  margin-left: -50px;
+  margin-top: -5px;
+  z-index: 9998;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
+.loading-icon span {
+  border-radius: 50%;
+  background-color: #dadada;
+  display: inline-block;
+  content: "•";
+  text-indent: -9999px;
+  font-size: 0;
+  height: 12px;
+  width: 12px;
+  margin: 0 2px;
+  transform: scale3d(0.6, 0.6, 1);
+  opacity: 0.6;
+}
+
+.loading-icon.white span {
+  background: white;
+}
+
+.loading-icon span.first,
+.loading-icon span.second,
+.loading-icon span.third {
+  animation: expandingDotWithRed 1000ms ease-in-out infinite;
+}
+
+.loading-icon.white span.first,
+.loading-icon.white span.second,
+.loading-icon.white span.third {
+  animation: expandingDotDefault 1000ms ease-in-out infinite;
+}
+
+.loading-icon span.second {
+  animation-delay: 200ms;
+}
+
+.loading-icon span.third {
+  animation-delay: 400ms;
+}
+
+@keyframes expandingDotDefault {
+  0% {
+    opacity: 0.6;
+    transform: scale3d(0.6, 0.6, 1);
+  }
+  20% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  40% {
+    opacity: 0.6;
+    transform: scale3d(0.6, 0.6, 1);
+  }
+}
+
+@keyframes expandingDotWithRed {
+  0% {
+    opacity: 0.6;
+    transform: scale3d(0.6, 0.6, 1);
+    background-color: #dadada;
+  }
+  20% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+    background-color: red;
+  }
+  40% {
+    opacity: 0.6;
+    transform: scale3d(0.6, 0.6, 1);
+    background-color: #dadada;
+  }
+}
+
+.textCalculateClass {
+  position: absolute;
+  visibility: hidden;
+  height: auto;
+  width: auto;
+  white-space: nowrap;
+  font-family: "RealHeadPro";
+  font-size: 21px;
+  font-weight: 800;
+}

@@ -1,0 +1,15 @@
+export const apiUrl = window.env?.hubKeycloackLogin?.apis
+export const codeErrors = window.env?.hubKeycloackLogin?.codeErrors || {}
+export const cookieSettings = window.env?.hubKeycloackLogin?.cookieSettings || {}
+export const microsite = window.env?.hubKeycloackLogin?.microsite || ""
+export const butterToken = window.env?.hubKeycloackLogin?.butterToken || ""
+export const templatesConfig = window.env?.hubKeycloackLogin?.templatesConfig || {}
+export const formPartners = window.env?.hubKeycloackLogin?.formPartners || {}
+export const hydraDomain = window.env?.hubKeycloackLogin?.hydraDomain || ""
+export const parameterKeycloak = window.env?.hubKeycloackLogin?.parameterKeycloak || {}
+export const defaultPartner = window.env?.hubKeycloackLogin?.defaultPartner || ""
+export const defaultErrorCode = window.env?.hubKeycloackLogin?.defaultErrorCode || ""
+export const callbackDomain = window.env?.hubKeycloackLogin?.callbackDomain || ""
+export const gtmKey = window.env?.hubKeycloackLogin.gtmKey || ""
+export const adobetmUrl = window.env?.hubKeycloackLogin.adobetmUrl || ""
+export const loginConfigurations = window.env?.hubKeycloackLogin?.loginConfigurations || {}

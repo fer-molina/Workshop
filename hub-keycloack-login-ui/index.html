@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+    <script type="text/javascript" src="<%= envConfigJs %>"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script async type="text/javascript">
+    if (!!window.MSInputMethodContext && !!document.documentMode) {
+      document.querySelector("body").classList.add("ie")
+      document.querySelector("body").classList.add("ie11")
+    } else if (navigator.userAgent.search("MSIE") >= 0) {
+      document.querySelector("body").classList.add("ie")
+      document.querySelector("body").classList.add("ie10")
+    }
+  </script>
+</html>

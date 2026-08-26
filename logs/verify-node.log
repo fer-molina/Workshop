@@ -1,0 +1,4 @@
+INTERACTIVE_NODE=v18.19.1
+INTERACTIVE_YARN=/bin/bash: line 1: yarn: command not found
+NODE_WHICH=/usr/bin/node
+SYSTEM_NODE=v18.19.1

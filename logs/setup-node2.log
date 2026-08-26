@@ -1,0 +1,41 @@
+=== state ===
+nvm: 0.40.1
+installed nodes:
+->     v20.15.0 *
+         system *
+default -> 20.15.0 (-> v20.15.0 *)
+iojs -> N/A (default)
+node -> stable (-> v20.15.0 *) (default)
+stable -> 20.15 (-> v20.15.0 *) (default)
+unstable -> N/A (default)
+lts/* -> lts/krypton (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.24.1 (-> N/A)
+lts/erbium -> v12.22.12 (-> N/A)
+lts/fermium -> v14.21.3 (-> N/A)
+lts/gallium -> v16.20.2 (-> N/A)
+lts/hydrogen -> v18.20.8 (-> N/A)
+lts/iron -> v20.20.2 (-> N/A)
+lts/jod -> v22.23.2 (-> N/A)
+lts/krypton -> v24.20.0 (-> N/A)
+
+=== install node 20.15.0 ===
+v20.15.0 is already installed.
+Now using node v20.15.0 (npm v10.7.0)
+[0;32mdefault[0m [0;90m->[0m [0;32m20.15.0[0m ([0;90m->[0m [0;32mv20.15.0[0m)
+Now using node v20.15.0 (npm v10.7.0)
+NODE_BIN=/home/fjmolina/.nvm/versions/node/v20.15.0/bin
+
+=== install yarn 1.22.22 (classic) using nvm's npm ===
+
+changed 1 package in 1s
+
+=== verify ===
+NODE=v20.15.0
+NPM=10.7.0
+YARN=1.22.22
+NODE_PATH=/home/fjmolina/.nvm/versions/node/v20.15.0/bin/node
+YARN_PATH=/home/fjmolina/.nvm/versions/node/v20.15.0/bin/yarn
+SETUP_DONE

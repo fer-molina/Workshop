@@ -1,0 +1,148 @@
+{
+  "realm": "lifemiles-test",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "eventsEnabled": true,
+  "eventsExpiration": 7776000,
+  "enabledEventTypes": [
+    "LOGIN",
+    "LOGIN_ERROR",
+    "REGISTER_CREDENTIAL",
+    "REGISTER_CREDENTIAL_ERROR",
+    "REMOVE_CREDENTIAL",
+    "REMOVE_CREDENTIAL_ERROR",
+    "UPDATE_CREDENTIAL",
+    "UPDATE_CREDENTIAL_ERROR"
+  ],
+  "adminEventsEnabled": true,
+  "adminEventsDetailsEnabled": true,
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 5,
+  "browserSecurityHeaders": {
+    "xContentTypeOptions": "nosniff",
+    "xFrameOptions": "DENY",
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+    "xRobotsTag": "none",
+    "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; style-src 'self' 'unsafe-inline' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; img-src 'self' data: https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; font-src 'self' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; connect-src 'self' https://d296xu67oj0g2g.cloudfront.net https://d2ptwux79zic3h.cloudfront.net; frame-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'",
+    "contentSecurityPolicyReportOnly": ""
+  },
+  "webAuthnPolicyPasswordlessRpEntityName": "LifeMiles",
+  "webAuthnPolicyPasswordlessRpId": "localhost",
+  "webAuthnPolicyPasswordlessSignatureAlgorithms": ["ES256"],
+  "webAuthnPolicyPasswordlessAttestationConveyancePreference": "none",
+  "webAuthnPolicyPasswordlessAuthenticatorAttachment": "platform",
+  "webAuthnPolicyPasswordlessRequireResidentKey": "Yes",
+  "webAuthnPolicyPasswordlessUserVerificationRequirement": "required",
+  "webAuthnPolicyPasswordlessCreateTimeout": 60,
+  "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
+  "clients": [
+    {
+      "clientId": "passkey-service-test",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "test-only-client-secret",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "redirectUris": ["http://localhost:*"],
+      "webOrigins": ["http://localhost:8080"]
+    }
+  ],
+  "users": [
+    {
+      "username": "testuser",
+      "enabled": true,
+      "email": "testuser@lifemiles-test.local",
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "test-only-password",
+          "temporary": false
+        }
+      ]
+    }
+  ],
+  "authenticationFlows": [
+    {
+      "alias": "lifemiles-test browser",
+      "description": "Browser flow used by integration tests, based on the default browser flow with WebAuthn Passwordless added as an alternative execution.",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-cookie",
+          "requirement": "ALTERNATIVE",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "autheticatorFlow": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "ALTERNATIVE",
+          "priority": 20,
+          "flowAlias": "lifemiles-test forms",
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "webauthn-authenticator-passwordless",
+          "requirement": "ALTERNATIVE",
+          "priority": 30,
+          "userSetupAllowed": false,
+          "autheticatorFlow": false
+        }
+      ]
+    },
+    {
+      "alias": "lifemiles-test forms",
+      "description": "Username/password form used as one of the browser flow alternatives.",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-username-password-form",
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "autheticatorFlow": false
+        }
+      ]
+    },
+    {
+      "alias": "direct grant",
+      "description": "Direct access grant (Resource Owner Password Credentials) flow. MUST be declared explicitly: when a realm JSON supplies its own authenticationFlows, Keycloak stops generating the built-in flows, so the realm would otherwise have no direct grant flow at all and every password grant would fail with 'No access_token in token response'. Discovered in Unit 4 when the first test to attempt a password grant failed.",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "direct-grant-validate-username",
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "autheticatorFlow": false
+        },
+        {
+          "authenticator": "direct-grant-validate-password",
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "userSetupAllowed": false,
+          "autheticatorFlow": false
+        }
+      ]
+    }
+  ],
+  "browserFlow": "lifemiles-test browser",
+  "directGrantFlow": "direct grant"
+}

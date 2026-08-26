@@ -1,0 +1,175 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/usr/share/maven/lib/guava.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.lifemiles:passkey-service >--------------------
+[INFO] Building passkey-service 0.1.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.5.0:clean (default-clean) @ passkey-service ---
+[INFO] Deleting /home/fjmolina/passkey-build/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ passkey-service ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.1:compile (default-compile) @ passkey-service ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ passkey-service ---
+[INFO] Copying 2 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.14.1:testCompile (default-testCompile) @ passkey-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] /home/fjmolina/passkey-build/src/test/java/com/lifemiles/passkey/config/KeycloakFixtureRealmIT.java: /home/fjmolina/passkey-build/src/test/java/com/lifemiles/passkey/config/KeycloakFixtureRealmIT.java uses or overrides a deprecated API.
+[INFO] /home/fjmolina/passkey-build/src/test/java/com/lifemiles/passkey/config/KeycloakFixtureRealmIT.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.5.6:test (default-test) @ passkey-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.lifemiles.passkey.PasskeyApplicationAotTests
+10:08:36.289 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lifemiles.passkey.PasskeyApplicationAotTests]: PasskeyApplicationAotTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:08:36.483 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lifemiles.passkey.PasskeyApplication for test class com.lifemiles.passkey.PasskeyApplicationAotTests
+10:08:36.660 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.lifemiles.passkey.PasskeyApplicationAotTests]: PasskeyApplicationAotTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+10:08:36.665 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.lifemiles.passkey.PasskeyApplication for test class com.lifemiles.passkey.PasskeyApplicationAotTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.8)
+
+2026-08-26 10:08:37 [main] INFO  c.l.p.PasskeyApplicationAotTests - Starting PasskeyApplicationAotTests using Java 25.0.4 with PID 485742 (started by fjmolina in /home/fjmolina/passkey-build)
+2026-08-26 10:08:37 [main] INFO  c.l.p.PasskeyApplicationAotTests - No active profile set, falling back to 1 default profile: "default"
+2026-08-26 10:08:43 [main] INFO  c.l.p.PasskeyApplicationAotTests - Started PasskeyApplicationAotTests in 6.966 seconds (process running for 9.459)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/home/fjmolina/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.949 s -- in com.lifemiles.passkey.PasskeyApplicationAotTests
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.4.2:jar (default-jar) @ passkey-service ---
+[INFO] Building jar: /home/fjmolina/passkey-build/target/passkey-service-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:4.0.8:repackage (repackage) @ passkey-service ---
+[INFO] Replacing main artifact /home/fjmolina/passkey-build/target/passkey-service-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /home/fjmolina/passkey-build/target/passkey-service-0.1.0-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- cyclonedx-maven-plugin:2.9.1:makeAggregateBom (default) @ passkey-service ---
+[INFO] CycloneDX: Resolving Dependencies
+[INFO] CycloneDX: Creating BOM version 1.6 with 108 component(s)
+[INFO] CycloneDX: Writing and validating BOM (JSON): /home/fjmolina/passkey-build/target/classes/META-INF/sbom/application.cdx.json
+[WARNING] Unknown keyword meta:enum - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[WARNING] Unknown keyword deprecated - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword or if it should generate annotations AnnotationKeyword
+[INFO]            attaching as passkey-service-0.1.0-SNAPSHOT-cyclonedx.json
+[INFO] 
+[INFO] --- maven-failsafe-plugin:3.5.6:integration-test (default) @ passkey-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.lifemiles.passkey.config.KeycloakFixtureRealmIT
+10:09:21.396 [main] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+10:09:21.409 [main] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+10:09:21.489 [main] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 2.0.5
+10:09:21.884 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.UnixSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+10:09:23.151 [main] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Unix socket (unix:///var/run/docker.sock)
+10:09:23.155 [main] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+10:09:23.213 [main] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 29.4.3
+  API Version: 1.54
+  Operating System: Ubuntu 24.04.1 LTS
+  Total Memory: 15706 MB
+10:09:23.465 [main] INFO tc.testcontainers/ryuk:0.14.0 -- Creating container for image: testcontainers/ryuk:0.14.0
+10:09:23.477 [main] INFO org.testcontainers.utility.RegistryAuthLocator -- Failure when attempting to lookup auth config. Please ignore if you don't have images in an authenticated registry. Details: (dockerImageName: testcontainers/ryuk:0.14.0, configFile: /home/fjmolina/.docker/config.json, configEnv: DOCKER_AUTH_CONFIG). Falling back to docker-java default behaviour. Exception message: Status 404: No config supplied. Checked in order: /home/fjmolina/.docker/config.json (file not found), DOCKER_AUTH_CONFIG (not set)
+10:09:23.893 [main] INFO tc.testcontainers/ryuk:0.14.0 -- Container testcontainers/ryuk:0.14.0 is starting: e2ef32a1e8643ed82297f58e0b7837ae6414af086202cc549c2b0878b16d622f
+10:09:24.734 [main] INFO tc.testcontainers/ryuk:0.14.0 -- Container testcontainers/ryuk:0.14.0 started in PT1.26872621S
+10:09:24.751 [main] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+10:09:24.752 [main] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+10:09:24.753 [main] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+10:09:24.769 [main] INFO tc.quay.io/keycloak/keycloak:26.1 -- Creating container for image: quay.io/keycloak/keycloak:26.1
+10:09:24.770 [main] INFO org.testcontainers.utility.RegistryAuthLocator -- Failure when attempting to lookup auth config. Please ignore if you don't have images in an authenticated registry. Details: (dockerImageName: quay.io/keycloak/keycloak:26.1, configFile: /home/fjmolina/.docker/config.json, configEnv: DOCKER_AUTH_CONFIG). Falling back to docker-java default behaviour. Exception message: Status 404: No config supplied. Checked in order: /home/fjmolina/.docker/config.json (file not found), DOCKER_AUTH_CONFIG (not set)
+Exception in thread "Thread-1" java.lang.NoClassDefFoundError: org/apache/commons/io/file/attribute/FileTimes
+	at org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.transferModTime(TarArchiveOutputStream.java:616)
+	at org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.writePaxHeaders(TarArchiveOutputStream.java:663)
+	at org.apache.commons.compress.archivers.tar.TarArchiveOutputStream.putArchiveEntry(TarArchiveOutputStream.java:541)
+	at org.testcontainers.utility.MountableFile.recursiveTar(MountableFile.java:359)
+	at org.testcontainers.utility.MountableFile.transferTo(MountableFile.java:327)
+	at org.testcontainers.containers.ContainerState.lambda$copyFileToContainer$2(ContainerState.java:358)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: java.lang.ClassNotFoundException: org.apache.commons.io.file.attribute.FileTimes
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+	... 7 more
+10:09:25.017 [main] INFO tc.quay.io/keycloak/keycloak:26.1 -- Container quay.io/keycloak/keycloak:26.1 is starting: ad0ebd6e4dc16ec16dc6c32c2fc580035117b3079c1e7bb9f8b1f9053f54882e
+10:09:25.560 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: JAVA_OPTS_KC_HEAP already set in environment; overriding default settings
+10:09:25.672 [main] INFO org.testcontainers.containers.wait.strategy.HttpWaitStrategy -- /naughty_williams: Waiting for 120 seconds for URL: http://localhost:32779/health/started (where port 32779 maps to container port 9000)
+10:09:28.040 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: Updating the configuration and installing your custom providers, if any. Please wait.
+10:09:35.633 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:09:32,787 WARN  [io.qua.config] (build-9) Unrecognized configuration key "quarkus.micrometer.enabled" was provided; it will be ignored; verify that the dependency extension for this configuration is set or that you did not make a typo
+10:09:35.641 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:09:35,614 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-13) Persistence unit 'keycloak-default': Enforcing Quarkus defaults for dialect 'org.hibernate.dialect.H2Dialect' by automatically setting 'jakarta.persistence.database-product-version=2.3.230'.
+10:09:35.648 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:09:35,647 INFO  [io.qua.hib.orm.dep.HibernateOrmProcessor] (build-13) A legacy persistence.xml file is present in the classpath. This file will be used to configure JPA/Hibernate ORM persistence units, and any configuration of the Hibernate ORM extension will be ignored. To ignore persistence.xml files instead, set the configuration property 'quarkus.hibernate-orm.persistence-xml.ignore' to 'true'.
+10:09:55.289 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:09:55,288 INFO  [io.qua.dep.QuarkusAugmentor] (main) Quarkus augmentation completed in 25262ms
+10:09:57.019 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: Running the server in development mode. DO NOT use this configuration in production.
+10:10:03.746 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:03,741 INFO  [org.keycloak.quarkus.runtime.storage.infinispan.CacheManagerFactory] (ForkJoinPool.commonPool-worker-1) Starting Infinispan embedded cache manager
+10:10:04.529 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:04,526 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) Virtual threads support enabled
+10:10:05.732 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:05,729 INFO  [org.infinispan.CONTAINER] (ForkJoinPool.commonPool-worker-1) ISPN000556: Starting user marshaller 'org.infinispan.commons.marshall.ImmutableProtoStreamMarshaller'
+10:10:08.797 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:08,794 INFO  [org.keycloak.broker.provider.AbstractIdentityProviderMapper] (main) Registering class org.keycloak.broker.provider.mappersync.ConfigSyncEventListener
+10:10:11.089 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:11,087 INFO  [org.keycloak.quarkus.runtime.storage.database.liquibase.QuarkusJpaUpdaterProvider] (main) Initializing database schema. Using changelog META-INF/jpa-changelog-master.xml
+10:10:18.276 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:18,274 INFO  [org.keycloak.connections.infinispan.DefaultInfinispanConnectionProviderFactory] (main) Node name: node_958726, Site name: null
+10:10:18.844 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:18,843 INFO  [org.keycloak.services] (main) KC-SERVICES0050: Initializing master realm
+10:10:24.116 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:24,114 INFO  [org.keycloak.services] (main) KC-SERVICES0077: Created temporary admin user with username admin
+10:10:24.591 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:24,586 INFO  [io.quarkus] (main) Keycloak 26.1.5 on JVM (powered by Quarkus 3.15.4) started in 29.064s. Listening on: http://0.0.0.0:8080. Management interface listening on http://0.0.0.0:9000.
+10:10:24.592 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:24,588 INFO  [io.quarkus] (main) Profile dev activated. 
+10:10:24.592 [docker-java-stream--477885241] INFO tc.quay.io/keycloak/keycloak:26.1 -- STDOUT: 2026-08-26 16:10:24,588 INFO  [io.quarkus] (main) Installed features: [agroal, cdi, hibernate-orm, jdbc-h2, keycloak, narayana-jta, opentelemetry, reactive-routes, rest, rest-jackson, smallrye-context-propagation, smallrye-health, vertx]
+10:10:25.538 [main] INFO tc.quay.io/keycloak/keycloak:26.1 -- Container quay.io/keycloak/keycloak:26.1 started in PT1M0.769226858S
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 68.07 s <<< FAILURE! -- in com.lifemiles.passkey.config.KeycloakFixtureRealmIT
+[ERROR] com.lifemiles.passkey.config.KeycloakFixtureRealmIT -- Time elapsed: 68.07 s <<< ERROR!
+java.lang.IllegalStateException: Could not copy the built-in browser flow. HTTP status: 404
+	at com.lifemiles.passkey.config.KeycloakFixtureRealmIT.activateWebAuthnPasswordlessInBrowserFlow(KeycloakFixtureRealmIT.java:93)
+	at com.lifemiles.passkey.config.KeycloakFixtureRealmIT.startContainer(KeycloakFixtureRealmIT.java:68)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   KeycloakFixtureRealmIT.startContainer:68->activateWebAuthnPasswordlessInBrowserFlow:93 IllegalState Could not copy the built-in browser flow. HTTP status: 404
+[INFO] 
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-failsafe-plugin:3.5.6:verify (default) @ passkey-service ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:00 min
+[INFO] Finished at: 2026-08-26T10:10:29-06:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project passkey-service: 
+[ERROR] 
+[ERROR] See /home/fjmolina/passkey-build/target/failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

@@ -1,0 +1,5 @@
+NODE=v18.19.1
+YARN=/bin/bash: line 1: yarn: command not found
+NPM=WSL 1 is not supported. Please upgrade to WSL 2 or above.
+Could: command not found
+NODEMODULES=absent

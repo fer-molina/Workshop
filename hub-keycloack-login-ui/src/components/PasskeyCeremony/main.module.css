@@ -1,0 +1,145 @@
+/*
+ * Shared chrome for the Passkey registration and authentication ceremony screens.
+ * Colour choices are documented with their contrast ratios because NFR-4 requires
+ * WCAG 2.1 AA (1.4.3, minimum 4.5:1 for body text).
+ */
+
+.ceremony {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+  color: #1b1b1b; /* 16.1:1 on #ffffff */
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-family: "RedHatDisplay", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.description {
+  margin: 0;
+  font-family: "RedHatDisplay", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/*
+ * Status region. Kept in the layout at all times (never conditionally unmounted) so that
+ * screen readers reliably announce updates through aria-live; a region that appears at the
+ * same moment its text changes is often missed.
+ */
+.status {
+  min-height: 24px;
+  margin: 0;
+  font-family: "RedHatDisplay", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #4a4a4a; /* 8.9:1 on #ffffff */
+}
+
+.statusError {
+  /* 5.9:1 on #ffffff — meets 1.4.3. Colour is never the only signal: the message text
+     states the problem, satisfying 1.4.1 Use of Colour. */
+  color: #b3261e;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.primaryAction,
+.secondaryAction {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 32px;
+  font-family: "RedHatDisplay-Semibold", "RedHatDisplay", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primaryAction {
+  border: 2px solid #1b1b1b;
+  background-color: #1b1b1b;
+  color: #fff; /* 16.1:1 */
+}
+
+.primaryAction:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.secondaryAction {
+  border: 2px solid #1b1b1b;
+  background-color: #fff;
+  color: #1b1b1b;
+}
+
+.secondaryAction:hover:not(:disabled) {
+  background-color: rgb(233 233 233);
+}
+
+.primaryAction:disabled,
+.secondaryAction:disabled {
+  cursor: not-allowed;
+  border-color: #6b6b6b;
+  background-color: #fff;
+  color: #6b6b6b; /* 4.6:1 — a disabled control still has to be readable */
+}
+
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  outline: 3px solid #177f8c;
+  outline-offset: 2px;
+}
+
+.deviceLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.deviceLabel label {
+  font-family: "RedHatDisplay", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.deviceLabel input {
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 12px;
+  border: 2px solid #6b6b6b;
+  border-radius: 8px;
+  font-family: "RedHatDisplay", sans-serif;
+  font-size: 18px;
+  color: #1b1b1b;
+}
+
+.deviceLabel input:focus-visible {
+  outline: 3px solid #177f8c;
+  outline-offset: 1px;
+}
+
+.deviceLabelHint {
+  margin: 0;
+  color: #4a4a4a;
+  font-family: "RedHatDisplay", sans-serif;
+  font-size: 14px;
+}

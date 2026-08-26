@@ -1,0 +1,21 @@
+=== before sourcing nvm ===
+node: /usr/bin/node
+
+=== default alias file ===
+20.15.0
+
+=== source nvm.sh and inspect ===
+nvm loaded: yes
+nvm current: v20.15.0
+node after source: /home/fjmolina/.nvm/versions/node/v20.15.0/bin/node
+
+=== explicit nvm use default ===
+Now using node v20.15.0 (npm v10.7.0)
+node after use: /home/fjmolina/.nvm/versions/node/v20.15.0/bin/node
+node version: v20.15.0
+yarn: /home/fjmolina/.nvm/versions/node/v20.15.0/bin/yarn 1.22.22
+
+=== PATH entries containing nvm or /usr/bin ===
+1:/home/fjmolina/.nvm/versions/node/v20.15.0/bin
+5:/usr/bin
+DIAG_DONE

@@ -1,26 +1,35 @@
 package com.lifemiles.passkey.config;
 
+import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.aot.hint.MemberCategory;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 
 /**
- * Registers GraalVM native-image reflection/proxy hints required for classes that are
- * accessed reflectively at runtime and would otherwise be stripped or fail under
- * native-image compilation.
+ * Registers GraalVM native-image hints for classes reached only reflectively (NFR-6).
  *
- * <p><b>Unit 1 scope</b>: this class is scaffolded as the single registration point for
- * native hints, but does not yet register any Keycloak Admin Client DTOs, since no
- * production code depends on them yet. Unit 3 (Spring Boot Backend) extends this class
- * with the concrete hints required by {@code PasskeyRegistrationService} and
- * {@code PasskeyManagementService} once they are implemented, per the native-readiness
- * requirement (NFR-6) and the guidance in {@code implementation-plan-passkey-lifemiles.md}
- * Task 1 / Task 3.</p>
+ * <p>The project's own DTOs are records serialised by Jackson's record support, which Spring Boot's
+ * AOT processing already handles, so they are not listed here. What AOT cannot see is the Keycloak
+ * Admin Client's representation classes: they are deserialised reflectively from JAX-RS responses,
+ * and without these hints the native image would strip their constructors and accessors, producing
+ * an empty or failing deserialisation at runtime rather than a compile-time error.</p>
+ *
+ * <p>Only the two representations this service actually touches are registered. Registering the
+ * whole Keycloak model would bloat the image and hide which types genuinely matter.</p>
  */
 public class PasskeyRuntimeHints implements RuntimeHintsRegistrar {
 
     @Override
     public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
-        // Intentionally empty in Unit 1. Populated in Unit 3 when Keycloak Admin Client
-        // request/response classes are introduced for Passkey registration and management.
+        hints.reflection()
+            .registerType(CredentialRepresentation.class,
+                MemberCategory.INVOKE_DECLARED_CONSTRUCTORS,
+                MemberCategory.INVOKE_DECLARED_METHODS,
+                MemberCategory.ACCESS_DECLARED_FIELDS)
+            .registerType(UserRepresentation.class,
+                MemberCategory.INVOKE_DECLARED_CONSTRUCTORS,
+                MemberCategory.INVOKE_DECLARED_METHODS,
+                MemberCategory.ACCESS_DECLARED_FIELDS);
     }
 }

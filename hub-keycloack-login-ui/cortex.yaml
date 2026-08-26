@@ -1,0 +1,68 @@
+openapi: 3.0.1
+info:
+  title: hub-keycloack-login-ui
+  x-cortex-custom-metadata:
+    generated-by-scaffolder: TRUE
+  x-cortex-link:
+    - url: ./docs/swagger.yaml
+      name: API
+      type: OPENAPI
+  x-cortex-groups:
+    - go
+  x-cortex-apm:
+    dynatrace:
+      entityNameMatchers:
+        - .*hub-keycloack-login-ui.*
+  x-cortex-git:
+    gitlab:
+      alias: gitlab-com
+      repository: lifemiles-it/lm-tecnologias-interactivas/hub-keycloack-login-ui
+  x-cortex-k8s:
+    argorollout:
+      - identifier: prd/hub-keycloack-login-ui-deployment
+  x-cortex-tag: hub-keycloack-login-ui
+  x-cortex-slos:
+    dynatrace:
+      - id: ""
+      - id: ""
+  x-cortex-type: service
+  x-cortex-issues:
+    jira:
+      components:
+        - hub-keycloack-login-ui
+  x-cortex-owners:
+    - name: lm_owner
+      type: GROUP
+      provider: CORTEX
+  x-cortex-dashboards:
+    embeds:
+      - url: https://grafana-prod.lifemiles.net/d-solo/LJ_uJAvms/cortex-services-dashboard?orgId=1&refresh=5m&var-datasource=mimir&var-service=hub-keycloack-login-ui.prd.svc.cluster.local&var-qrep=source&var-srcns=All&var-srcwl=All&var-dstns=All&var-dstwl=All&var-cluster=k8sprd.lifemiles.net&var-workload=nginx&var-namespace=default&var-type=deployment&panelId=12
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/LJ_uJAvms/cortex-services-dashboard?orgId=1&refresh=5m&var-datasource=mimir&var-service=hub-keycloack-login-ui.prd.svc.cluster.local&var-qrep=source&var-srcns=All&var-srcwl=All&var-dstns=All&var-dstwl=All&var-cluster=k8sprd.lifemiles.net&var-workload=nginx&var-namespace=default&var-type=deployment&panelId=14
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/LJ_uJAvms/cortex-services-dashboard?orgId=1&refresh=5m&var-datasource=mimir&var-service=hub-keycloack-login-ui.prd.svc.cluster.local&var-qrep=source&var-srcns=All&var-srcwl=All&var-dstns=All&var-dstwl=All&var-cluster=k8sprd.lifemiles.net&var-workload=nginx&var-namespace=default&var-type=deployment&panelId=87
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/LJ_uJAvms/cortex-services-dashboard?orgId=1&refresh=5m&var-datasource=mimir&var-service=hub-keycloack-login-ui.prd.svc.cluster.local&var-qrep=source&var-srcns=All&var-srcwl=All&var-dstns=All&var-dstwl=All&var-cluster=k8sprd.lifemiles.net&var-workload=nginx&var-namespace=default&var-type=deployment&panelId=25
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/LJ_uJAvms/cortex-services-dashboard?orgId=1&refresh=5m&var-datasource=mimir&var-service=hub-keycloack-login-ui.prd.svc.cluster.local&var-qrep=source&var-srcns=All&var-srcwl=All&var-dstns=All&var-dstwl=All&var-cluster=k8sprd.lifemiles.net&var-workload=nginx&var-namespace=default&var-type=deployment&panelId=26
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/LJ_uJAvms/cortex-services-dashboard?orgId=1&refresh=5m&var-datasource=mimir&var-service=hub-keycloack-login-ui.prd.svc.cluster.local&var-qrep=source&var-srcns=All&var-srcwl=All&var-dstns=All&var-dstwl=All&var-cluster=k8sprd.lifemiles.net&var-workload=nginx&var-namespace=default&var-type=deployment&panelId=27
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/a164a7f0339f99e89cea5cb47e9be617/kubernetes-compute-resources-workload?orgId=1&refresh=10s&var-datasource=mimir&var-cluster=k8sprd.lifemiles.net&var-namespace=prd&var-type=deployment&var-workload=hub-keycloack-login-ui-deployment&panelId=1
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/a164a7f0339f99e89cea5cb47e9be617/kubernetes-compute-resources-workload?orgId=1&refresh=10s&var-datasource=mimir&var-cluster=k8sprd.lifemiles.net&var-namespace=prd&var-type=deployment&var-workload=hub-keycloack-login-ui-deployment&panelId=2
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/a164a7f0339f99e89cea5cb47e9be617/kubernetes-compute-resources-workload?orgId=1&refresh=10s&var-datasource=mimir&var-cluster=k8sprd.lifemiles.net&var-namespace=prd&var-type=deployment&var-workload=hub-keycloack-login-ui-deployment&panelId=3
+        type: grafana
+      - url: https://grafana-prod.lifemiles.net/d-solo/a164a7f0339f99e89cea5cb47e9be617/kubernetes-compute-resources-workload?orgId=1&refresh=10s&var-datasource=mimir&var-cluster=k8sprd.lifemiles.net&var-namespace=prd&var-type=deployment&var-workload=hub-keycloack-login-ui-deployment&panelId=4
+        type: grafana
+  x-cortex-domain-parents:
+    - tag: lm-tecnologias-interactivas
+  x-cortex-static-analysis:
+    veracode:
+      sandboxes:
+        - sandboxName: sb-hub-keycloack-login-ui
+          applicationName: lm-tecnologias-interactivas
+
+    sonarqube:
+      project: golang-sonar-hub-keycloack-login-ui

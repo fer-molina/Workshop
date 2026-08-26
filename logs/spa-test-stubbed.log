@@ -1,0 +1,42 @@
+NODE=v20.15.0  YARN=1.22.22
+
+=== sync to scratch copy ===
+
+=== drop the private deps and the private registry config ===
+removed @lm-tecnologias-interactivas-c/website-components
+removed @lm-tecnologias-interactivas-u/website-utils
+
+=== write stubs for the private packages ===
+
+=== yarn install (public deps only, lockfile not enforced) ===
+yarn install v1.22.22
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+[3/4] Linking dependencies...
+warning " > @csstools/postcss-global-data@3.1.0" has unmet peer dependency "postcss@^8.4".
+warning "commitlint > @commitlint/cli > @commitlint/load > cosmiconfig-typescript-loader@6.3.0" has unmet peer dependency "@types/node@*".
+warning " > postcss-custom-media@11.0.6" has unmet peer dependency "postcss@^8.4".
+warning " > stylelint-config-prettier@9.0.5" has incorrect peer dependency "stylelint@>= 11.x < 15".
+[4/4] Building fresh packages...
+success Saved lockfile.
+$ husky
+.git can't be foundDone in 28.76s.
+INSTALL_RC=0
+
+=== vitest: Unit 2 tests only ===
+
+ RUN  v3.1.4 /home/fjmolina/spa-stub
+
+ ✓ src/test/utils/webauthn.test.ts (15 tests) 34ms
+ ✓ src/test/components/SocialManager.passkey.test.tsx (8 tests) 1096ms
+   ✓ SocialManager — Passkey option > posts the WebAuthn execution id to the flow action url when selected  518ms
+ ✓ src/test/components/PasskeyButton.test.tsx (10 tests) 1216ms
+   ✓ PasskeyButton > exposes a button role with the CMS label as its accessible name  441ms
+
+ Test Files  3 passed (3)
+      Tests  33 passed (33)
+   Start at  12:53:55
+   Duration  4.39s (transform 650ms, setup 1.53s, collect 1.28s, tests 2.35s, environment 3.91s, prepare 715ms)
+
+TEST_RC=0
+STUBBED_RUN_DONE

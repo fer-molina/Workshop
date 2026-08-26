@@ -21,7 +21,11 @@ import org.springframework.test.context.TestPropertySource;
     "KEYCLOAK_CLIENT_ID=passkey-service-test",
     "KEYCLOAK_ADMIN_URL=http://localhost:8080",
     "KEYCLOAK_ADMIN_USER=test-admin",
-    "KEYCLOAK_ADMIN_PASSWORD=test-admin-password"
+    "KEYCLOAK_ADMIN_PASSWORD=test-admin-password",
+    // Added in Unit 3: both are required with no default, so the context would fail to start
+    // without them. That is the intended behaviour (fail closed), not a test inconvenience.
+    "KEYCLOAK_REALM=lifemiles-test",
+    "LIFEMILES_CORS_ALLOWED_ORIGINS=https://www.lifemiles.com"
 })
 class PasskeyApplicationAotTests {
 

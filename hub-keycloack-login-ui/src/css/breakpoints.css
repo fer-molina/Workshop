@@ -1,0 +1,22 @@
+/* breakpoints for minors */
+@custom-media --breakpoint-xs-minor (width <= 365px);
+@custom-media --breakpoint-sm-minor (width <= 768px);
+@custom-media --breakpoint-md-minor (width <= 1024px);
+@custom-media --breakpoint-lg-minor (width <= 1280px);
+@custom-media --breakpoint-xl-minor (width <= 1400px);
+@custom-media --breakpoint-xxl-minor (width <= 1700px);
+
+/* breakpoints for ranges */
+@custom-media --breakpoint-xs-to-sm (365px < width <= 768px);
+@custom-media --breakpoint-sm-to-md (768px < width <= 1024px);
+@custom-media --breakpoint-md-to-lg (1024px < width <= 1280px);
+@custom-media --breakpoint-lg-to-xl (1280px < width <= 1400px);
+@custom-media --breakpoint-lg-to-xxl (1280px < width <= 1700px);
+
+/* breakpoints for greaters */
+@custom-media --breakpoint-xs-greater (width > 365px);
+@custom-media --breakpoint-sm-greater (width > 768px);
+@custom-media --breakpoint-md-greater (width > 1024px);
+@custom-media --breakpoint-lg-greater (width > 1280px);
+@custom-media --breakpoint-xl-greater (width > 1400px);
+@custom-media --breakpoint-xxl-greater (width > 1700px);

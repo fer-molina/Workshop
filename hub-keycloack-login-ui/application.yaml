@@ -1,0 +1,18 @@
+svc:
+  name: "hub-keycloack-login-ui"
+server:
+  port: "90"
+client:
+  general:
+    timeout: 3 #minutes
+  dialer:
+    timeout: 30 #seconds
+    keepAlive: 30 #seconds
+  transport:
+    maxIdleConnections: 100
+    idleConnectionTimeout: 90 #seconds
+    tlsHandshakeTimeout: 120 #seconds
+    expectContinueTimeout: 1 #seconds
+appProperties:
+  headers:
+    blackList: "user-agent,cookie,content-type,accept,content-length,authorization" #headers name to will be deleted, add o remove one or more as you require

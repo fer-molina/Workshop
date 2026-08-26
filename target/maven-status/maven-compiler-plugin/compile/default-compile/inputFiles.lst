@@ -1,4 +1,10 @@
 /mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/PasskeyApplication.java
+/mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/audit/package-info.java
 /mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/config/LifeMilesKeycloakProperties.java
 /mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/config/PasskeyRuntimeHints.java
 /mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/config/SecurityConfig.java
+/mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/controller/package-info.java
+/mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/exception/package-info.java
+/mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/model/package-info.java
+/mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/security/package-info.java
+/mnt/c/Users/fjmolina/OneDrive - Aerovias del Continente Americano S.A. AVIANCA/Documents/Work/Workshop/src/main/java/com/lifemiles/passkey/service/package-info.java

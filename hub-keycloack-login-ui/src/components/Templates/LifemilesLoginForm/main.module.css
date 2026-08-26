@@ -1,0 +1,402 @@
+.backLm {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  width: auto !important;
+}
+
+.backLm_label {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #1b1b1b;
+  font-family: "RedHatDisplay";
+}
+
+.backContainer,
+.backContainerMbl {
+  margin-bottom: 30px;
+}
+
+.backContainer {
+  @media (--breakpoint-sm-minor) {
+    position: absolute;
+    /* position: fixed; */
+    top: calc(var(--footer-height) + 12px);
+    z-index: 900;
+    padding: 12px 0px;
+  }
+}
+
+.backContainerMbl {
+  @media (--breakpoint-sm-minor) {
+    position: absolute;
+    /* position: fixed; */
+    top: calc(12px);
+    z-index: 900;
+    padding: 12px 0px;
+  }
+}
+
+.loginDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: auto;
+  align-self: stretch;
+
+  @media (--breakpoint-sm-greater) {
+    height: auto;
+  }
+
+  &.errorDiv {
+    @media (--breakpoint-sm-greater) {
+      height: auto;
+    }
+  }
+}
+
+.title {
+  color: #1b1b1b;
+  text-align: center;
+  font-family: "RedHatDisplay";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.separatorDiv {
+  div:last-child {
+    margin-top: 16px;
+  }
+}
+
+.separatorDiveFloat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.separatorText {
+  color: #1b1b1b;
+  font-family: "RedHatDisplay";
+  text-align: left;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+
+  p {
+    margin: 0;
+  }
+
+  p a {
+    color: #177f8c;
+    font-family: "RedHatDisplay";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-decoration: none;
+  }
+}
+
+.separatorTextComponent {
+  color: #1b1b1b;
+  text-align: center;
+  font-family: "RedHatDisplay";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 8px 0px 0px;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #177f8c;
+  font-family: "RedHatDisplay";
+  font-size: 16px;
+  line-height: 18px;
+  font-style: normal;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.inputForm,
+.inputFormMbl {
+  padding: 0;
+  gap: 0;
+  margin-bottom: 0;
+  font-family: "RedHatDisplay";
+
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
+    display: none !important;
+  }
+
+  input:focus ~ label {
+    font-size: 12px !important;
+    top: calc(50% - 6px);
+  }
+
+  input:not(:placeholder-shown) ~ label {
+    font-size: 12px !important;
+    top: calc(50% - 6px);
+  }
+
+  a {
+    color: #1b1b1b;
+    transform: translateY(-50%);
+    text-decoration: none;
+    position: absolute;
+    right: 1.6rem;
+    top: 3.36rem;
+    cursor: pointer;
+
+    img {
+      width: 1.6rem;
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  &.error {
+    input:focus ~ label {
+      top: calc(50% - 18px);
+    }
+
+    input:not(:placeholder-shown) ~ label {
+      top: calc(50% - 18px);
+    }
+
+    label {
+      color: #c20000 !important;
+      top: calc(50% - 26%);
+    }
+
+    span {
+      color: #c20000 !important;
+    }
+
+    input {
+      border-color: #c20000 !important;
+    }
+
+    div {
+      margin-top: 0.4rem;
+
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+
+  input {
+    display: flex;
+    height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    font-size: 16px;
+    padding: 28px 16px 12px;
+    align-items: center;
+    gap: var(--x-small, 8px);
+    flex: 1 0 0;
+    border-radius: var(--tiny, 8px);
+    border-color: rgba(148, 148, 148, 1);
+    background: var(--background-input-default, #fff);
+    position: relative;
+  }
+
+  label {
+    color: #5a5a5a;
+    font-family: "RedHatDisplay";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0;
+    left: 6px;
+    top: calc(50% - 17%);
+  }
+}
+
+.loginBoxWrapper {
+  position: relative;
+  width: 100%;
+  margin: 12px 0px;
+}
+
+.loginBox {
+  border-top: 1px solid #d9d9d9;
+  position: absolute;
+  /* margin-top: 24px; */
+  width: 100%;
+}
+
+.loginText {
+  background-color: #fafafa;
+  color: #5a5a5a;
+  font-family: "RedHatDisplay";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  left: 50%;
+  padding: 0 10px;
+  position: absolute;
+  text-align: center;
+  top: -12px;
+  transform: translate(-50%);
+  white-space: nowrap;
+  line-height: 21px;
+  letter-spacing: 0;
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .buttons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1b1b1b;
+    background-color: rgb(255, 255, 255);
+    border-radius: 32px;
+    height: 52px;
+    width: 100%;
+    min-width: 100px;
+    color: #1b1b1b;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    font-family: "RedHatDisplay-Semibold";
+
+    .iconWhite {
+      display: none;
+    }
+
+    .icon {
+      display: block;
+    }
+
+    &:hover {
+      background-color: rgb(233, 233, 233);
+    }
+
+    &:active {
+      background-color: rgb(27, 27, 27);
+      color: rgb(255, 255, 255);
+
+      .iconWhite {
+        display: block;
+      }
+
+      .icon {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (--breakpoint-sm-greater) {
+  .socialButtons {
+    flex-direction: row;
+  }
+
+  .buttons {
+    width: 50% !important;
+  }
+
+  .loginText {
+    background-color: #fff;
+  }
+
+  .buttonLoginWrapper {
+    &:hover {
+      background-color: #494949 !important;
+      border-color: #494949 !important;
+    }
+
+    &:active {
+      background-color: #6c6c6c !important;
+      border-color: #6c6c6c !important;
+    }
+  }
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "RedHatDisplay";
+  font-size: 20px;
+  font-weight: 700;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.inputWrapper {
+  position: relative;
+  color: #323237;
+}
+
+.buttonLoginWrapper {
+  display: flex;
+  min-width: 100px;
+  justify-content: center;
+  align-items: center;
+  gap: var(--x-small, 8px);
+  align-self: stretch;
+  cursor: pointer;
+  color: var(--text-brand-primary, #fff);
+  text-align: center;
+  min-height: 52px;
+  /* button/B200 */
+  font-family: "RedHatDisplay";
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0;
+
+  &:active {
+    background-color: #6c6c6c !important;
+    border-color: #6c6c6c !important;
+  }
+}
+
+.alertStyle p {
+  font-size: 14px;
+}
+
+.alertStyle div:first-child {
+  display: flex;
+}
+
+.alertStyle img {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+:global([class*="icon_container"]) {
+  mask-size: auto;
+}
