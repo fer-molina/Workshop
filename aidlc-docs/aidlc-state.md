@@ -32,7 +32,7 @@
 - [x] **Consolidated Inception Approval** — APPROVED (user committed/pushed Inception artifacts, then requested "Procede con la siguiente fase")
 
 ### 🟢 CONSTRUCTION PHASE
-- [ ] Unit 1: Keycloak Configuration (Project Scaffolding + Standalone Keycloak Console Setup) — Code Generation Planning COMPLETE, awaiting approval to generate
+- [ ] Unit 1: Keycloak Configuration (Project Scaffolding + Standalone Keycloak Console Setup) — Code Generation COMPLETE (all 12 plan steps [x]), awaiting user review/approval
 - [ ] Unit 2: Custom Login Theme — NOT STARTED
 - [ ] Unit 3: Spring Boot Backend (Native-Ready) — NOT STARTED
 - [ ] Unit 4: Testing & Integration — NOT STARTED
@@ -43,6 +43,6 @@
 
 ## Current Status
 - **Lifecycle Phase**: CONSTRUCTION
-- **Current Stage**: Unit 1 — Code Generation, Part 1 (Planning) complete
-- **Next Stage**: Awaiting user approval of `aidlc-docs/construction/plans/unit-1-keycloak-configuration-code-generation-plan.md` to begin Part 2 (Generation)
+- **Current Stage**: Unit 1 — Code Generation, Part 2 (Generation) complete
+- **Next Stage**: Awaiting user review/approval of generated code to proceed to Unit 2 (Custom Login Theme)
 - **Status**: Awaiting user approval

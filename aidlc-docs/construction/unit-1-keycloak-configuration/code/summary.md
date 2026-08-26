@@ -3,7 +3,8 @@
 ## What was generated
 
 ### Application code (workspace root)
-- `pom.xml` — Spring Boot 4.0.0 / Java 21 Maven project, native profile (GraalVM), integration test profile (Failsafe), CycloneDX SBOM plugin, all dependency versions pinned exactly (SECURITY-10)
+- `pom.xml` — Spring Boot 4.0.8 / Java 21 Maven project, native profile (GraalVM), integration test profile (Failsafe), CycloneDX SBOM plugin, all dependency versions pinned exactly (SECURITY-10)
+- `src/main/java/com/lifemiles/passkey/{controller,service,model,security,exception,audit}/package-info.java` — placeholder packages per `unit-of-work.md`'s package-based separation, populated in Unit 3
 - `src/main/java/com/lifemiles/passkey/PasskeyApplication.java` — main application class
 - `src/main/java/com/lifemiles/passkey/config/SecurityConfig.java` — baseline deny-by-default `SecurityFilterChain` (stateless, JWT resource-server validation on every request)
 - `src/main/java/com/lifemiles/passkey/config/LifeMilesKeycloakProperties.java` — `@ConfigurationProperties` binding for the 4 Keycloak admin env vars, with `@NotBlank` fail-fast validation
@@ -24,6 +25,7 @@
 1. **jqwik pinned to 1.9.3, not the latest 1.10.x** — jqwik 1.10.0+ contains a confirmed, maintainer-acknowledged prompt-injection payload targeting AI coding agents (hidden via ANSI escape codes in test output, instructing deletion of tests/code). This is documented publicly (jqwik-team/jqwik issues #708, #710, #714; covered by Ars Technica and TechSpot). 1.9.3 is the last release before this behavior was introduced. This decision is documented inline in `pom.xml` and satisfies SECURITY-10 (trusted sources only).
 2. **Keycloak Admin Client reflection hints deferred to Unit 3**: `PasskeyRuntimeHints` is scaffolded but left empty in Unit 1 since no production code yet uses Keycloak Admin Client DTOs reflectively.
 3. **No Maven Wrapper committed**: the Dockerfile installs a pinned Maven version directly in the build stage instead of relying on `mvnw`, since no wrapper was requested and this avoids committing wrapper JAR binaries.
+4. **Removed stray `spring-boot-starter-aop` dependency**: a leftover dependency pinned to `3.5.16` (a Spring Boot 3.x version, inconsistent with the 4.0.8 parent BOM) was present in `pom.xml` but unused by any generated code (no `@Aspect`/AOP usage exists). Removed during this generation pass to avoid an unplanned, unpinned-relative-to-BOM dependency and a potential classpath conflict; not part of the original Step 1 dependency list and outside this unit's scope.
 
 ## Security Compliance (Task 1 targets)
 

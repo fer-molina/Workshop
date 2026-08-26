@@ -20,7 +20,7 @@
 
 ## Steps
 
-- [ ] **Step 1: Maven project scaffolding**
+- [x] **Step 1: Maven project scaffolding**
   - Create `pom.xml` using `spring-boot-starter-parent` 4.0.x, Java 21
   - Dependencies: `spring-boot-starter-web`, `spring-boot-starter-security`, `spring-boot-starter-oauth2-resource-server`, `spring-boot-starter-validation`
   - Keycloak Admin Client dependency (`org.keycloak:keycloak-admin-client`, pinned version)
@@ -28,27 +28,27 @@
   - CycloneDX Maven plugin for SBOM (SECURITY-10)
   - Path: `pom.xml` (workspace root)
 
-- [ ] **Step 2: Package structure setup**
+- [x] **Step 2: Package structure setup**
   - Create empty package-info placeholders (or `.gitkeep`) under `src/main/java/com/lifemiles/passkey/{config,controller,service,model,security,exception,audit}`
   - Path: `src/main/java/com/lifemiles/passkey/**`
 
-- [ ] **Step 3: Native image Maven profile**
+- [x] **Step 3: Native image Maven profile**
   - Add `native` profile to `pom.xml`: `org.graalvm.buildtools:native-maven-plugin`, `spring-boot-maven-plugin` with `<aot>` goal wiring
   - Add GraalVM reachability metadata repository dependency
   - Path: `pom.xml` (native profile section)
 
-- [ ] **Step 4: Native hints scaffolding**
+- [x] **Step 4: Native hints scaffolding**
   - Create `src/main/resources/META-INF/native-image/` directory with a placeholder `reflect-config.json` (empty array, to be populated in Unit 3 when Keycloak Admin Client DTOs are used)
   - Create `PasskeyRuntimeHints` class (implements `RuntimeHintsRegistrar`) in `config` package — placeholder registration point, to be extended in Unit 3
   - Path: `src/main/resources/META-INF/native-image/reflect-config.json`, `src/main/java/com/lifemiles/passkey/config/PasskeyRuntimeHints.java`
 
-- [ ] **Step 5: `application.yml` — environment-variable driven Keycloak config**
+- [x] **Step 5: `application.yml` — environment-variable driven Keycloak config**
   - Define `spring.security.oauth2.resourceserver.jwt.issuer-uri: ${KEYCLOAK_ISSUER_URI}`
   - Define custom properties block `lifemiles.keycloak.admin-url`, `admin-user`, `admin-password`, `client-id` bound to `${KEYCLOAK_ADMIN_URL}`, `${KEYCLOAK_ADMIN_USER}`, `${KEYCLOAK_ADMIN_PASSWORD}`, `${KEYCLOAK_CLIENT_ID}`
   - No hardcoded defaults for credentials (fail fast if unset in non-test profiles)
   - Path: `src/main/resources/application.yml`
 
-- [ ] **Step 6: Keycloak Admin Console manual setup guide**
+- [x] **Step 6: Keycloak Admin Console manual setup guide**
   - Create `docs/keycloak-console-setup.md` documenting, step by step (no realm JSON export):
     - Standalone install: `bin/kc.sh start-dev` (local dev) / `bin/kc.sh start` (staging-like)
     - Create/select the LifeMiles realm
@@ -57,29 +57,29 @@
     - Setting the 5 required environment variables for the Spring Boot app to connect
   - Path: `docs/keycloak-console-setup.md`
 
-- [ ] **Step 7: Testcontainers fixture realm (test-only)**
+- [x] **Step 7: Testcontainers fixture realm (test-only)**
   - Create `src/test/resources/keycloak-test-realm.json`: realm `lifemiles-test` with WebAuthn Passwordless authenticator pre-registered as ALTERNATIVE in browser flow, RP name "LifeMiles", RP ID `localhost` (test-appropriate), user verification required, resident key required, plus one test client and one test user
   - Explicitly documented via a header comment (as a JSON-adjacent `.md` note, since JSON doesn't support comments) that this fixture is test-only and independent of the real instance's manual setup
   - Path: `src/test/resources/keycloak-test-realm.json`, `src/test/resources/README-fixture-realm.md`
 
-- [ ] **Step 8: Testcontainers smoke test**
+- [x] **Step 8: Testcontainers smoke test**
   - `KeycloakFixtureRealmIT` — starts a Keycloak Testcontainer (dasniko/testcontainers-keycloak) importing `keycloak-test-realm.json`, asserts realm is reachable and the WebAuthn Passwordless authenticator is present in the browser flow via Admin REST API query
   - Path: `src/test/java/com/lifemiles/passkey/config/KeycloakFixtureRealmIT.java`
 
-- [ ] **Step 9: AOT context load test**
+- [x] **Step 9: AOT context load test**
   - `PasskeyApplicationAotTests` — verifies the Spring context loads under AOT processing (`@SpringBootTest` + AOT-friendly config, no external Keycloak dependency needed for this test)
   - Path: `src/test/java/com/lifemiles/passkey/PasskeyApplicationAotTests.java`
 
-- [ ] **Step 10: Dockerfile (native image build, backend only)**
+- [x] **Step 10: Dockerfile (native image build, backend only)**
   - Multi-stage: `FROM ghcr.io/graalvm/native-image-community:21` (pinned digest/tag) build stage → `FROM gcr.io/distroless/base-debian12` runtime stage
   - Path: `Dockerfile`
 
-- [ ] **Step 11: Main application class + minimal SecurityFilterChain placeholder**
+- [x] **Step 11: Main application class + minimal SecurityFilterChain placeholder**
   - `PasskeyApplication` (`@SpringBootApplication`) main class
   - Minimal `SecurityConfig` in `config` package establishing JWT resource-server auth (to be extended in Unit 3) — required for the AOT test (Step 9) and smoke test to have a valid application context
   - Path: `src/main/java/com/lifemiles/passkey/PasskeyApplication.java`, `src/main/java/com/lifemiles/passkey/config/SecurityConfig.java`
 
-- [ ] **Step 12: Documentation summary**
+- [x] **Step 12: Documentation summary**
   - Create `aidlc-docs/construction/unit-1-keycloak-configuration/code/summary.md` documenting what was generated, decisions made (pinned versions used), and how it satisfies FR-10, ENV-1 through ENV-5
   - Path: `aidlc-docs/construction/unit-1-keycloak-configuration/code/summary.md`
 
